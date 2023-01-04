@@ -1,0 +1,150 @@
+.section {
+  line-height: 1.4rem;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+  background: #035244;
+  text-align: center;
+  height: 150px;
+  color: white;
+  padding-top: 1rem;
+}
+
+.section .icon {
+  font-size: 50px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.section .icon .zmdi {
+  font-size: 50px !important;
+}
+
+.section .divider {
+  display: block;
+}
+
+.section .text {
+  font-size: 18px;
+  font-weight: 600;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.section:hover {
+  background: #2e95e9be;
+}
+
+.section:hover .icon {
+  font-size: 48px;
+}
+
+.section:hover .text {
+  font-size: 16px;
+}
+
+.section_1 {
+  height: 130px !important;
+}
+
+.window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 25px 50px;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: none;
+}
+
+.window.shown {
+  display: block;
+}
+
+.window .inner-window {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.window .inner-window .top-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #888888;
+  padding: 15px;
+}
+
+.window .inner-window .top-bar #wt {
+  font-weight: 600;
+}
+
+.window .inner-window .top-bar #wcc {
+  cursor: pointer;
+}
+
+.window .inner-window .content {
+  height: calc(100% - 50px);
+  overflow: auto;
+}
+
+.working {
+  z-index: 99999;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0px 250px;
+  display: none;
+}
+
+.working.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.working .working-child {
+  background: white;
+  width: 100%;
+  padding: 50px 100px;
+  text-align: center;
+}
+
+.working .working-child .working-title {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.working .working-child img {
+  max-width: 100px;
+}
+/*# sourceMappingURL=local.css.map */
