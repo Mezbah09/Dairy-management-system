@@ -16,7 +16,7 @@
                 <th>Employee Name</th>
                 <th>Employee phone</th>
                 <th>Employee Address</th>
-                <th>Salary (Rs.)</th>
+                <th>Salary (tk)</th>
                 <th>Action</th>
             </tr>
         </thead>
