@@ -14,7 +14,7 @@ use App\Models\Milkdata;
 use App\Models\Sellitem;
 use App\Models\Snffat;
 use App\Models\User;
-use App\NepaliDate;
+use App\AppDate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +29,7 @@ class FarmerController extends Controller
     {
         if ($request->isMethod('post')) {
             // dd($request->advance);
-            // dd($request);
+            //  dd($request);
             if ($request->filled('no')) {
                 $max = $request->no;
             } else {
@@ -54,7 +54,7 @@ class FarmerController extends Controller
             $farmer->usecc = $request->usecc ?? 0;
             $farmer->usetc = $request->usetc ?? 0;
             $farmer->userate = $request->userate ?? 0;
-            $farmer->rate = $request->rate;
+            $farmer->rate = $request->rate ?? 0;
             $farmer->save();
 
 
@@ -99,7 +99,7 @@ class FarmerController extends Controller
     }
 
     // public function loadDate(Request $r){
-    //     $range=NepaliDate::getDate($r->year,$r->month,$r->session);
+    //     $range=AppDate::getDate($r->year,$r->month,$r->session);
     //     $data=$r->all();
     //     $farmer1=User::where('id',$r->user_id)->first();
 
@@ -142,7 +142,7 @@ class FarmerController extends Controller
     public function loadDate(Request $r)
     {
         // dd($r->all());
-        $range = NepaliDate::getDate($r->year, $r->month, $r->session);
+        $range = AppDate::getDate($r->year, $r->month, $r->session);
         $data = $r->all();
         $farmer1 = User::where('id', $r->user_id)->first();
         $center = Center::where('id', $farmer1->farmer()->center_id)->first();
@@ -308,13 +308,13 @@ class FarmerController extends Controller
         $farmer->usecc = $request->usecc ?? 0;
         $farmer->usetc = $request->usetc ?? 0;
         $farmer->userate = $request->userate ?? 0;
-        $farmer->rate = $request->rate;
+        $farmer->rate = $request->rate ?? $farmer->rate ?? 0;
         $farmer->save();
 
         $user->usecc = $farmer->usecc;
         $user->usetc = $farmer->usetc;
         $user->userate = $farmer->userate;
-        $user->rate = $farmer->rate;
+        $user->rate = $farmer->rate ?? $farmer->rate ?? 0;
 
         return view('admin.farmer.single', compact('user'));
     }

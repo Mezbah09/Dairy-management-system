@@ -121,17 +121,17 @@
 <script>
     // initTableSearch('searchid', 'farmerforData', ['name']);
     // load by date
-    $("input#nepali-datepicker").bind('click', function (e) {
+    $("input#app-datepicker").bind('click', function (e) {
         loadAdvance();
     });
 
 
-    $("input#nepali-datepicker").bind('changed', function (e) {
+    $("input#app-datepicker").bind('changed', function (e) {
         loadAdvance();
     });
     
     function loadAdvance(){
-        var date = $('#nepali-datepicker').val();
+        var date = $('#app-datepicker').val();
 
         axios({
                 method: 'post',
@@ -151,7 +151,7 @@
     }
 
     function update(id){
-        var date = $('#nepali-datepicker').val();
+        var date = $('#app-datepicker').val();
 
         axios({
                 method: 'post',
@@ -175,7 +175,7 @@
     }
 
     function del(id){
-        var date = $('#nepali-datepicker').val();
+        var date = $('#app-datepicker').val();
         if (confirm('Are you sure?')) {
         axios({
                 method: 'post',
@@ -237,9 +237,9 @@
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");
         mainInput.nepaliDatePicker();
-        var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-        var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-        $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+        var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+        var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+        $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
         loadAdvance();
         $('#u_id').focus();
     };

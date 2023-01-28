@@ -79,7 +79,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <input readonly type="text" name="date" id="nepali-datepicker" class="form-control next" data-next="user_id" placeholder="Date">
+                <input type="date" name="date" id="app-datepicker" class="form-control next" data-next="user_id" placeholder="Date">
             </div>
         </div>
         <div class="col-md-6">

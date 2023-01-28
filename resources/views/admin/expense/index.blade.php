@@ -13,7 +13,7 @@
             <div class="col-lg-4">
                 <label for="name">Date</label>
                 <div class="form-group">
-                    <input type="text" name="date" id="nepali-datepicker" class="form-control next" data-next="cat_id" placeholder="Date" required>
+                    <input type="date" name="date" id="app-datepicker" class="form-control next" data-next="cat_id" placeholder="Date" required>
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
 <script src="{{ asset('backend/plugins/select2/select2.min.js') }}"></script>
 
 <script>
-    var month = Array.from(NepaliFunctions.GetBsMonths());
+    var month = Array.from(AppDateFunction.GetBsMonths());
     var i =1;
     month.forEach(element => {
         $('#mth').append('<option value="'+i+'">'+element+'</option>');
@@ -146,7 +146,7 @@
     });
 
     var start_y = 2050;
-    var now_yr = NepaliFunctions.GetCurrentBsYear();
+    var now_yr = AppDateFunction.GetCurrentBsYear();
     var now_yr1 = now_yr;
     for (let index = start_y; index < now_yr; index++) {
         $('#yr').append('<option value="'+now_yr1+'">'+now_yr1+'</option>');
@@ -269,8 +269,8 @@
         var mainInput = document.getElementById("nepali-datepicker");
         mainInput.nepaliDatePicker();
 
-        var month = NepaliFunctions.GetCurrentBsDate().month;
-        var year = NepaliFunctions.GetCurrentBsDate().year;
+        var month = AppDateFunction.GetCurrentBsDate().month;
+        var year = AppDateFunction.GetCurrentBsDate().year;
         $('#yr').val(year).change();
         $('#mth').val(month).change();
         loadData();
@@ -280,9 +280,9 @@
     };
 
 
-        var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-        var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-        $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+        var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+        var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+        $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
 
     function loadExp(){

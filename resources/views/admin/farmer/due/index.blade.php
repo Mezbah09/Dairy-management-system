@@ -61,9 +61,9 @@
             $('#allData').html(response.data);
             var mainInput = document.getElementById("nepali-datepicker");
                 mainInput.nepaliDatePicker();
-                var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-                var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-                $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+                var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+                var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+                $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
         })
         .catch(function(response) {
             //handle error
@@ -100,7 +100,7 @@
             alert('please enter valid data!');
             return false;
         }else{
-            var date = $('#nepali-datepicker').val();
+            var date = $('#app-datepicker').val();
             var amt = $('#p_amt').val();
             var detail = $('#p_detail').val();
             var user_no = $('#u_no').val();

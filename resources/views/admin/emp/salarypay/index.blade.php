@@ -33,9 +33,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <label for="date">For Year</label>
-                        <select name="year" id="year" class="form-control show-tick ms select2 load-year">
-
-                        </select>
+                        <input type="number" minlength="4" maxlength="4" class="form-control" name="year" id="year" />
                     </div>
 
                     <div class="col-lg-3">
@@ -131,7 +129,7 @@
 
 
         function salaryPayment() {
-            var date = $('#nepali-datepicker').val();
+            var date = $('#app-datepicker').val();
             var year = $('#year').val();
             var month = $('#month').val();
             var pay = $('#p_amt').val();
@@ -172,7 +170,7 @@
 
         // amount transfer
         function transferAmt() {
-            var date = $('#nepali-datepicker').val();
+            var date = $('#app-datepicker').val();
             var emp_id = $('#employee_id').val();
             var year = $('#year').val();
             var month = $('#month').val();

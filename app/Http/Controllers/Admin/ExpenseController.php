@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Expcategory;
 use App\Models\Expense;
-use App\NepaliDate;
+use App\AppDate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,37 +14,43 @@ class ExpenseController extends Controller
 
     // expe categories
 
-    public function categoryIndex(){
+    public function categoryIndex()
+    {
         return view('admin.expense.category.index');
     }
 
-    public function categoryAdd(Request $request){
+    public function categoryAdd(Request $request)
+    {
         $expcat = new Expcategory();
         $expcat->name = $request->name;
         $expcat->save();
-        return redirect()->back()->with('message','Category added successfully!');
+        return redirect()->back()->with('message', 'Category added successfully!');
     }
 
-    public function categoryUpdate(Request $request){
+    public function categoryUpdate(Request $request)
+    {
         // dd($request->all());
-        $expcat = Expcategory::where('id',$request->id)->first();
+        $expcat = Expcategory::where('id', $request->id)->first();
         $expcat->name = $request->name;
         $expcat->save();
-        return redirect()->back()->with('message','Category updated successfully!');
+        return redirect()->back()->with('message', 'Category updated successfully!');
     }
 
-    public function categoryExpenses(Request $request){
-        $exps = Expense::latest()->where('expcategory_id',$request->id)->get();
-        return view('admin.expense.list',compact('exps'));
+    public function categoryExpenses(Request $request)
+    {
+        $exps = Expense::latest()->where('expcategory_id', $request->id)->get();
+        return view('admin.expense.list', compact('exps'));
     }
 
     // expenses
-    public function index(){
+    public function index()
+    {
         return view('admin.expense.index');
     }
 
-    public function addExpense(Request $request){
-        $date = str_replace('-','',$request->date);
+    public function addExpense(Request $request)
+    {
+        $date = str_replace('-', '', $request->date);
         $exp = new Expense();
         $exp->title = $request->title;
         $exp->amount = $request->amount;
@@ -55,12 +61,13 @@ class ExpenseController extends Controller
         $exp->expcategory_id = $request->cat_id;
         $exp->user_id = Auth::user()->id;
         $exp->save();
-        return view('admin.expense.single',compact('exp'));
+        return view('admin.expense.single', compact('exp'));
     }
 
-    public function editExpenses(Request $request){
-        $date = str_replace('-','',$request->date);
-        $exp = Expense::where('id',$request->id)->first();
+    public function editExpenses(Request $request)
+    {
+        $date = str_replace('-', '', $request->date);
+        $exp = Expense::where('id', $request->id)->first();
         $exp->title = $request->title;
         $exp->amount = $request->amount;
         $exp->date = $date;
@@ -70,25 +77,27 @@ class ExpenseController extends Controller
         $exp->expcategory_id = $request->cat_id;
         $exp->user_id = Auth::user()->id;
         $exp->save();
-        return view('admin.expense.single',compact('exp'));
+        return view('admin.expense.single', compact('exp'));
     }
 
-    public function listExpense(Request $request){
+    public function listExpense(Request $request)
+    {
         $exps = Expense::latest()->get();
-        return view('admin.expense.list',compact('exps'));
+        return view('admin.expense.list', compact('exps'));
     }
 
-    public function deleteExpense($id){
+    public function deleteExpense($id)
+    {
         $exp = Expense::find($id);
         $exp->delete();
     }
 
-    public function loadExpense(Request $request){
+    public function loadExpense(Request $request)
+    {
         $range = [];
-        $range=NepaliDate::getDateMonth($request->year,$request->month);
+        $range = AppDate::getDateMonth($request->year, $request->month);
         // dd($range);
-        $exps = Expense::latest()->where('date','>=',$range[1])->where('date','<=',$range[2])->get();
-        return view('admin.expense.list',compact('exps'));
-
+        $exps = Expense::latest()->where('date', '>=', $range[1])->where('date', '<=', $range[2])->get();
+        return view('admin.expense.list', compact('exps'));
     }
 }

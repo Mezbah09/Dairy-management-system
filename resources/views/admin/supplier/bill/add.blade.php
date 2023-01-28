@@ -41,7 +41,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="date">Date</label>
-                                                <input type="text" name="date" id="nepali-datepicker"
+                                                <input type="date" name="date" id="app-datepicker"
                                                     class="calender form-control" placeholder="Date" required>
                                             </div>
                                         </div>

@@ -109,7 +109,7 @@
             'id': $('#u_id').val(),
             'amount':$('#amount').val(),
             'method':$('#method').val(),
-            'date': $('#nepali-datepicker').val()
+            'date': $('#app-datepicker').val()
         })
         .then(function(response) {
             // console.log(response.data);
@@ -149,9 +149,9 @@
 
     function setDate(){
 
-        var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-        var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-        $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+        var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+        var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+        $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
         var mainInput = document.getElementById("nepali-datepicker");
         mainInput.nepaliDatePicker();
     }

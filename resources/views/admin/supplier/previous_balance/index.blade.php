@@ -29,7 +29,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input readonly type="text" name="date" id="nepali-datepicker" class="calender form-control next" data-next="supplier_id" placeholder="Date" onchange="">
+                        <input type="date" name="date" id="app-datepicker" class="calender form-control next" data-next="supplier_id" placeholder="Date" onchange="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -113,7 +113,7 @@
 
 
     function saveData() {
-        if ($('#nepali-datepicker').val() == '' || $('#supplier_id').val() == ""  || $('#amount').val()=="" || $('#amount').val()=="0") {
+        if ($('#app-datepicker').val() == '' || $('#supplier_id').val() == ""  || $('#amount').val()=="" || $('#amount').val()=="0") {
             alert('Please enter data in empty field !');
             $('#supplier_id').focus();
             return false;
@@ -154,7 +154,7 @@
         $('#datas').html("");
         // list
         axios.post('{{ route("admin.supplier.previous.balance.load")}}',{
-            'date': $('#nepali-datepicker').val()
+            'date': $('#app-datepicker').val()
             })
         .then(function(response) {
             // console.log(response.data);
@@ -169,7 +169,7 @@
 
 
 
-    $('#nepali-datepicker').bind('changed', function() {
+    $('#app-datepicker').bind('changed', function() {
         loadData();
     });
 

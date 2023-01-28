@@ -61,7 +61,7 @@ class LedgerManage
     */
     public function addLedger($particular, $type, $amount, $date, $identifier, $foreign_id = null)
     {
-        $nepalidate = new NepaliDate($date);
+        $nepalidate = new AppDate($date);
         $_amount = $this->user->amount;
         $amounttype = $this->user->amounttype ?? 1;
 
@@ -165,14 +165,14 @@ class LedgerManage
     }
 
 
-    public static function farmerReport($user_id, $range, $needledger = false,$center=null)
+    public static function farmerReport($user_id, $range, $needledger = false, $center = null)
     {
         $farmer1 = User::find($user_id);
-        $farmer=$farmer1->farmer();
+        $farmer = $farmer1->farmer();
 
         $snfAvg = truncate_decimals(Snffat::where('user_id', $user_id)->where('date', '>=', $range[1])->where('date', '<=', $range[2])->avg('snf'), 2);
         $fatAvg = truncate_decimals(Snffat::where('user_id', $user_id)->where('date', '>=', $range[1])->where('date', '<=', $range[2])->avg('fat'), 2);
-        if($center==null){
+        if ($center == null) {
             $center = DB::table('centers')->where('id', $farmer->center_id)->first();
         }
 
@@ -232,7 +232,7 @@ class LedgerManage
         //     }
         // }
 
-        $prev_query=" select (
+        $prev_query = " select (
             (select sum(amount) from ledgers where user_id={$user_id} and type=2 and date<{$range[1]} )
             +(select ifnull(sum(amount),0) from ledgers where user_id={$user_id} and type=2 and date>={$range[1]} and date<={$range[2]} and identifire=120 )
              -(select sum(amount) from ledgers where user_id={$user_id} and type=1 and date<{$range[1]} )
@@ -270,7 +270,7 @@ class LedgerManage
             $farmer1->ledger = [];
         }
 
-        file_put_contents(public_path('test.json'),$farmer1->no);
+        file_put_contents(public_path('test.json'), $farmer1->no);
         return $farmer1;
     }
 }

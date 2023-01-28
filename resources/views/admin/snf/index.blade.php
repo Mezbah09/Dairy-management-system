@@ -24,7 +24,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="text" name="date" id="nepali-datepicker" class="form-control" placeholder="Date">
+                        <input type="date" name="date" id="app-datepicker" class="form-control" placeholder="Date">
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
     }
 
     function disableTopPanel(method) {
-        $('#nepali-datepicker').css('pointer-events', method);
+        $('#app-datepicker').css('pointer-events', method);
         $('#center_id').css('pointer-events', method);
 
         if (method == 'none') {
@@ -140,10 +140,10 @@
     function loadData() {
         disableTopPanel('none');
         $('#loaddata').hide();
-        if ($('#nepali-datepicker').val() == '' || $('#center_id').val() == '' ) {
+        if ($('#app-datepicker').val() == '' || $('#center_id').val() == '' ) {
             alert('Please fill empty field !');
-            if ($('#nepali-datepicker').val() == '') {
-                $('#nepali-datepicker').focus();
+            if ($('#app-datepicker').val() == '') {
+                $('#app-datepicker').focus();
                 return false;
             } else if ($('#center_id').val() == '') {
                 $('#center_id').focus();
@@ -260,9 +260,9 @@
             });
     }
 
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");

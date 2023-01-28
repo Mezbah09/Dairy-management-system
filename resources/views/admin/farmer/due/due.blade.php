@@ -36,7 +36,7 @@
 <div class="row">
     <div class="col-md-4">
         <label for="date">Date</label>
-        <input  type="date" name="date" id="" class="form-control" placeholder="Date">
+        <input  type="date" name="date" class="form-control" placeholder="Date">
     </div>
     <div class="col-md-4">
         <label for="total"> Total Due </label>

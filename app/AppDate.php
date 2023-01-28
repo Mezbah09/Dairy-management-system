@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-class NepaliDate{
+class AppDate{
     public $year;
     public $month;
     public $day;

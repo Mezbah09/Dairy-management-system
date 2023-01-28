@@ -2,7 +2,7 @@
 
 namespace App;
 
-class NepaliDateHelper
+class AppDateHelper
 {
     // Data for nepali date
     private $_bs = [
@@ -105,12 +105,12 @@ class NepaliDateHelper
 
     public static function withDate($date)
     {
-        $year=(int)($date/10000);
-        $date=$date%10000;
-        $month=(int)($date/100);
-        $day= (int)($date%100);
-        $ins=new self();
-        $ins->nep_to_eng($year,$month,$day);
+        $year = (int)($date / 10000);
+        $date = $date % 10000;
+        $month = (int)($date / 100);
+        $day = (int)($date % 100);
+        $ins = new self();
+        $ins->nep_to_eng($year, $month, $day);
         return $ins;
     }
     /**
@@ -124,25 +124,25 @@ class NepaliDateHelper
     {
         switch ($day) {
             case 1:
-                $day = 'आईतवार';
+                $day = 'Sunday';
                 break;
             case 2:
-                $day = 'सोमबार';
+                $day = 'Monday';
                 break;
             case 3:
-                $day = 'मंगलवार';
+                $day = 'Tuesday';
                 break;
             case 4:
-                $day = 'बुधबार';
+                $day = 'Wednesday';
                 break;
             case 5:
-                $day = 'बिहीबार';
+                $day = 'Thursday';
                 break;
             case 6:
-                $day = 'शुक्रबार';
+                $day = 'Friday';
                 break;
             case 7:
-                $day = 'शनिबार';
+                $day = 'Saturday';
                 break;
         }
 
@@ -253,47 +253,7 @@ class NepaliDateHelper
      */
     private function _get_nepali_month($m)
     {
-        $n_month = false;
-        switch ($m) {
-            case 1:
-                $n_month = 'बैशाख';
-                break;
-            case 2:
-                $n_month = 'जेष्ठ';
-                break;
-            case 3:
-                $n_month = 'असार';
-                break;
-            case 4:
-                $n_month = 'श्रावण';
-                break;
-            case 5:
-                $n_month = 'भाद्र';
-                break;
-            case 6:
-                $n_month = 'आश्विन';
-                break;
-            case 7:
-                $n_month = 'कार्तिक';
-                break;
-            case 8:
-                $n_month = 'मंसिर';
-                break;
-            case 9:
-                $n_month = 'पुष';
-                break;
-            case 10:
-                $n_month = 'माघ';
-                break;
-            case 11:
-                $n_month = 'फाल्गुन';
-                break;
-            case 12:
-                $n_month = 'चैत्र';
-                break;
-        }
-
-        return $n_month;
+        return $this->_get_english_month($m);
     }
 
     /**
@@ -479,7 +439,7 @@ class NepaliDateHelper
      *
      * @return array
      */
-    public function eng_to_nepInt($yy, $mm, $dd):int
+    public function eng_to_nepInt($yy, $mm, $dd): int
     {
         // Check for date range
         $chk = $this->_is_in_range_eng($yy, $mm, $dd);
@@ -560,8 +520,7 @@ class NepaliDateHelper
                 $total_eDays--;
             }
             $numDay = $day;
-            return $y*10000+$m*100+ $total_nDays;
-
+            return $y * 10000 + $m * 100 + $total_nDays;
         }
     }
     /**
@@ -652,16 +611,16 @@ class NepaliDateHelper
     {
         $str = strval($str);
         $array = [
-            0 => '&#2406;',
-            1       => '&#2407;',
-            2       => '&#2408;',
-            3       => '&#2409;',
-            4       => '&#2410;',
-            5       => '&#2411;',
-            6       => '&#2412;',
-            7       => '&#2413;',
-            8       => '&#2414;',
-            9       => '&#2415;',
+            0 => '0;',
+            1       => '1;',
+            2       => '2;',
+            3       => '3;',
+            4       => '4;',
+            5       => '5;',
+            6       => '6;',
+            7       => '7;',
+            8       => '8;',
+            9       => '9;',
             /*'.'=>'&#2404;'*/
         ];
         $utf = '';
@@ -677,13 +636,12 @@ class NepaliDateHelper
         return $utf;
     }
 
-    public static function npToString(int $date):String{
-        $y=(int)($date/10000);
-        $date=$date % 10000;
-        $m=(int)($date / 100);
-        $d=$date%100;
-        return $y."-".($m<10?"0".$m:$m)."-".($d<10?"0".$d:$d);
-
+    public static function npToString(int $date): String
+    {
+        $y = (int)($date / 10000);
+        $date = $date % 10000;
+        $m = (int)($date / 100);
+        $d = $date % 100;
+        return $y . "-" . ($m < 10 ? "0" . $m : $m) . "-" . ($d < 10 ? "0" . $d : $d);
     }
-    
 }

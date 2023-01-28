@@ -5,12 +5,12 @@
 
 <script src="{{ asset('calender/nepali.datepicker.v3.2.min.js') }}"></script>
 <script>
-    var months = Array.from(NepaliFunctions.GetBsMonths());
-var year = NepaliFunctions.GetCurrentBsYear();
-var month = NepaliFunctions.GetCurrentBsDate().month;
-var day = NepaliFunctions.GetCurrentBsDate().day;
+    var months = Array.from(AppDateFunction.GetBsMonths());
+var year = AppDateFunction.GetCurrentBsYear();
+var month = AppDateFunction.GetCurrentBsDate().month;
+var day = AppDateFunction.GetCurrentBsDate().day;
 var start_y = 2070;
-var now_yr = NepaliFunctions.GetCurrentBsYear();
+var now_yr = AppDateFunction.GetCurrentBsYear();
 var now_yr1 = now_yr;
 for (let index = start_y; index < now_yr; index++) {
     $("#year").append(
@@ -22,7 +22,7 @@ for (let index = start_y; index < now_yr; index++) {
 $(".calender").each(function () {
     $("#" + $(this).attr("id")).nepaliDatePicker();
     $(this).val(
-        NepaliFunctions.GetCurrentBsYear() +
+        AppDateFunction.GetCurrentBsYear() +
             "-" +
             (month < 10 ? "0" + month : month) +
             "-" +
@@ -37,7 +37,7 @@ function setDate(id, current = false) {
         mainInput.nepaliDatePicker();
         if (current) {
             $("#" + id).val(
-                NepaliFunctions.GetCurrentBsYear() +
+                AppDateFunction.GetCurrentBsYear() +
                     "-" +
                     (month < 10 ? "0" + month : month) +
                     "-" +

@@ -113,8 +113,8 @@
                                     <input type="checkbox"  name="userate" class="mx-2" value="1">Fixed Rate
                                     <input type="number" step="0.01" min="0" value="0" name="rate">
                                 </div>
-                            </div> --}}
-                        </div>
+                            </div> 
+                        </div> --}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -124,9 +124,9 @@
             </div>
             </form>
             <div class="text-right pr-3">
-                <span>
+                {{-- <span>
                     <input type="checkbox" id="another"> Add Another
-                </span>
+                </span> --}}
                 <span>
                     <input type="checkbox" id="auto"> Auto Increment
                 </span>
@@ -186,14 +186,14 @@
                                     <input type="checkbox" id="euserate" name="userate" class="mx-2" value="1">Fixed Rate
                                     <input type="number" min="0" step="0.01" value="0" name="rate" id="erate">
                                 </div>
-                            </div> --}}
+                            </div>  --}}
 
-                            <!-- <div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <label for="name">Advance Amount </label>
                                 <div class="form-group">
                                     <input type="number" id="eadvance" name="advance" step="0.001" value="0" class="form-control" placeholder="Enter advance">
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                 </div>
             </div>
@@ -211,9 +211,9 @@
 <script src="{{ asset('backend/plugins/select2/select2.min.js') }}"></script>
 <script src="{{ asset('calender/nepali.datepicker.v3.2.min.js') }}"></script>
 <script>
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsDate().year+''+month+''+day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val({{date('Y/m/d')}});
     function initEdit(ele) {
         var farmer = JSON.parse(ele.dataset.farmer);
         console.log(farmer);
@@ -227,7 +227,7 @@
         $('#eusecc')[0].checked=farmer.usecc==1;
         $('#euserate')[0].checked=farmer.userate==1;
         $('#erate').val(farmer.rate).change();
-        // $('#eadvance').val(ele.dataset.advance);
+        $('#eadvance').val(ele.dataset.advance);
         $('#eid').val(farmer.id);
         $('#editModal').modal('show');
 

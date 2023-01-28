@@ -24,10 +24,10 @@
             <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-apps"></i><span>Farmer</span></a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.farmer') }}" class="waves-effect waves-block">Farmer List</a></li>
-                    <li><a href="{{ route('admin.farmer.advance') }}" class="waves-effect waves-block">Advance</a></li>
+                    {{-- <li><a href="{{ route('admin.farmer.advance') }}" class="waves-effect waves-block">Advance</a></li> --}}
                     <li><a href="{{ route('admin.farmer.due') }}" class="waves-effect waves-block">Paid By Former</a></li>
-                    {{-- <li><a href="{{ route('admin.farmer.due.add.list') }}" class="waves-effect waves-block">Previous Balance</a></li> --}}
-                    {{-- <li><a href="{{ route('milk.payment.home') }}" class="waves-effect waves-block">Milk Payment</a></li> --}}
+                    <li><a href="{{ route('admin.farmer.due.add.list') }}" class="waves-effect waves-block">Previous Balance</a></li> 
+                    <li><a href="{{ route('milk.payment.home') }}" class="waves-effect waves-block">Milk Payment</a></li>
                 </ul>
             </li>
 
@@ -38,12 +38,12 @@
                     {{-- <li><a href="{{ route('admin.snf.fat') }}" class="waves-effect waves-block">Add Fat & Snf</a></li> --}}
                 </ul>
             </li>
-            {{-- <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Items</span></a>
+            <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Items</span></a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.item') }}" class="waves-effect waves-block">Add Item</a></li>
                     <li><a href="{{ route('admin.sell.item') }}" class="waves-effect waves-block">Sell Items</a></li>
                 </ul>
-            </li> --}}
+            </li>
             @if (env('tier',1)==1)
             {{-- <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Distributers</span></a> --}}
                 <ul class="ml-menu">
@@ -59,11 +59,11 @@
 
             {{-- <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Suppliers</span></a> --}}
                 <ul class="ml-menu">
-                    {{-- <li><a href="{{ route('admin.supplier.index') }}" class="waves-effect waves-block">Supplier List</a></li>
+                     <li><a href="{{ route('admin.supplier.index') }}" class="waves-effect waves-block">Supplier List</a></li>
                     <li><a href="{{ route('admin.sup.bill') }}" class="waves-effect waves-block">Supplier Bill</a></li>
                     <li><a href="{{ route('supplier.pay') }}" class="waves-effect waves-block">Supplier Payment</a></li>
-                    <li><a href="{{ route('supplier.previous.balance') }}" class="waves-effect waves-block">Previous Blance</a></li> --}}
-                    <li><a href="{{ route('admin.supplier.index') }}" class="waves-effect waves-block">Supplier List</a></li>
+                    <li><a href="{{ route('supplier.previous.balance') }}" class="waves-effect waves-block">Previous Blance</a></li> 
+                                        <li><a href="{{ route('admin.supplier.index') }}" class="waves-effect waves-block">Supplier List</a></li>
                     <li><a href="{{ route('admin.supplier.bill') }}" class="waves-effect waves-block">Supplier Bill</a></li>
                     <li><a href="{{ route('admin.supplier.pay') }}" class="waves-effect waves-block">Supplier Payment</a></li>
                     <li><a href="{{ route('admin.supplier.previous.balance') }}" class="waves-effect waves-block">Previous Blance</a></li>
@@ -89,14 +89,14 @@
                 </ul>
             {{-- </li> --}}
 
-            {{-- <li><a href="{{route('product.home')}}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li> --}}
+             <li><a href="{{route('product.home')}}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Products</span></a></li> 
             @endif
 
             @if(env('tierlevel',1)==1)
                {{-- <li><a href="{{route('purchase.home')}}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Purchase Product</span></a></li> --}}
             @endif
-            {{-- <li><a href="{{ route('report.home') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Report</span></a></li> --}}
-            {{-- {{-- <li><a href="{{ route('user.users') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Users</span></a></li> --}} 
+            {{-- <li><a href="{{ route('report.home') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Report</span></a></li>  --}}
+             <li><a href="{{ route('user.users') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Users</span></a></li> 
             @if (env('tierlevel',1)==1)
             {{-- <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Manufacture</span></a> --}}
                 <ul class="ml-menu">
@@ -108,9 +108,9 @@
             <li>
                 <a href="{{ url('admin/customer') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Customers</span></a>
             </li>
-            {{-- <li>
+             <li>
                 <a href="{{ url('admin/billing') }}" class="waves-effect waves-block"><i class="zmdi zmdi-shopping-cart"></i><span>Billing</span></a>
-            </li> --}}
+            </li> 
             @if(env('tier',1) == 1)
             {{-- <li><a href="javascript:void(0);" class="waves-effect waves-block menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Home Page Setting</span></a> --}}
                 <ul class="ml-menu">

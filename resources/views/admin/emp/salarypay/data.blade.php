@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-md-4">
             <label for="date">Date</label>
-            <input readonly type="text" name="date" id="nepali-datepicker" class="form-control" placeholder="Date">
+            <input type="date" name="date" id="app-datepicker" class="form-control" placeholder="Date">
         </div>
         <div class="col-md-4">
             <label for="total"> Monthly Salary </label>

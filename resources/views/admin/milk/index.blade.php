@@ -239,7 +239,7 @@
     }
 
     function disableTopPanel(method){
-        $('#nepali-datepicker').css('pointer-events',method);
+        $('#app-datepicker').css('pointer-events',method);
         $('#center_id').css('pointer-events',method);
         $('#session').css('pointer-events',method);
         $('#loaddata').css('pointer-events',method);
@@ -264,10 +264,10 @@
     function loadData() {
         disableTopPanel('none');
         $('#loaddata').hide();
-        if ($('#nepali-datepicker').val() == '' || $('#center_id').val() == '' || $('#session').val() == '') {
+        if ($('#app-datepicker').val() == '' || $('#center_id').val() == '' || $('#session').val() == '') {
             alert('Please fill empty field !');
-            if ($('#nepali-datepicker').val() == '') {
-                $('#nepali-datepicker').focus();
+            if ($('#app-datepicker').val() == '') {
+                $('#app-datepicker').focus();
                 return false;
             } else if ($('#center_id').val() == '') {
                 $('#center_id').focus();
@@ -306,9 +306,9 @@
         $('#u_id').focus();
     }
 
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");

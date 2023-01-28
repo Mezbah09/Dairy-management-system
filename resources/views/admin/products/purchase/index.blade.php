@@ -21,7 +21,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="text" name="date" id="nepali-datepicker" class="form-control next" data-next="center_id" placeholder="Date">
+                        <input type="date" name="date" id="app-datepicker" class="form-control next" data-next="center_id" placeholder="Date">
                     </div>
                 </div>
 
@@ -111,9 +111,9 @@
     <script src="{{ asset('backend/js/pages/forms/advanced-form-elements.js') }}"></script>
     <script src="{{ asset('calender/nepali.datepicker.v3.2.min.js') }}"></script>
     <script>
-        var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-        var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-        $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+        var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+        var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+        $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");

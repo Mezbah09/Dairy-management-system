@@ -10,7 +10,7 @@ use App\Models\EmployeeSession;
 use App\Models\Ledger;
 use App\Models\SalaryPayment;
 use App\Models\User;
-use App\NepaliDate;
+use App\AppDate;
 use Illuminate\Http\Request;
 
 class EmployeeController1 extends Controller
@@ -64,7 +64,7 @@ class EmployeeController1 extends Controller
     public function delete(Request $request)
     {
         $user = User::where('id', $request->id)->where('role', 4)->first();
-        Employee::where('user_id',$user->id)->delete();
+        Employee::where('user_id', $user->id)->delete();
         $user->delete();
     }
 
@@ -82,12 +82,12 @@ class EmployeeController1 extends Controller
         // $salary = SalaryPayment::where('user_id',$request->user_id);
         // $employee = EmployeeAdvance::join('employees','employees.id','=','employee_advances.employee_id')->where('employees.user_id',$request->user_id);
         // if($request->type == 1){
-        //     $range=NepaliDate::getDateYear($request->year);
+        //     $range=AppDate::getDateYear($request->year);
         //     $employee = $employee->where('employee_advances.date','>=',$range[1])->where('employee_advances.date','<=',$range[2])->get();
         //     $salary = $salary->where('year',$request->year)->get();
         // }
         // if($request->type == 2){
-        //     $range=NepaliDate::getDateMonth($request->year,$request->month);
+        //     $range=AppDate::getDateMonth($request->year,$request->month);
         //     $employee = $employee->where('employee_advances.date','>=',$range[1])->where('employee_advances.date','<=',$range[2])->get();
         //     $salary = $salary->where('year',$request->year)->where('month',$request->month)->get();
         // }
@@ -104,7 +104,7 @@ class EmployeeController1 extends Controller
         $title = "";
         $ledger = Ledger::where('user_id', $request->user_id);
         if ($type == 0) {
-            $range = NepaliDate::getDate($request->year, $request->month, $request->session);
+            $range = AppDate::getDate($request->year, $request->month, $request->session);
             $ledger = $ledger->where('date', '>=', $range[1])->where('date', '<=', $range[2]);
             $title = "<span class='mx-2'>Year:" . $year . "</span>";
             $title .= "<span class='mx-2'>Month:" . $month . "</span>";
@@ -112,20 +112,20 @@ class EmployeeController1 extends Controller
         } elseif ($type == 1) {
             $date = $date = str_replace('-', '', $request->date1);
             $ledger = $ledger->where('date', '=', $date);
-            $title = "<span class='mx-2'>Date:" . _nepalidate($date) . "</span>";
+            $title = "<span class='mx-2'>Date:" . _date_format($date) . "</span>";
         } elseif ($type == 2) {
-            $range = NepaliDate::getDateWeek($request->year, $request->month, $request->week);
+            $range = AppDate::getDateWeek($request->year, $request->month, $request->week);
             $ledger = $ledger->where('date', '>=', $range[1])->where('date', '<=', $range[2]);
             $title = "<span class='mx-2'>Year:" . $year . "</span>";
             $title .= "<span class='mx-2'>Month:" . $month . "</span>";
             $title .= "<span class='mx-2'>Week:" . $week . "</span>";
         } elseif ($type == 3) {
-            $range = NepaliDate::getDateMonth($request->year, $request->month);
+            $range = AppDate::getDateMonth($request->year, $request->month);
             $ledger = $ledger->where('date', '>=', $range[1])->where('date', '<=', $range[2]);
             $title = "<span class='mx-2'>Year:" . $year . "</span>";
             $title .= "<span class='mx-2'>Month:" . $month . "</span>";
         } elseif ($type == 4) {
-            $range = NepaliDate::getDateYear($request->year);
+            $range = AppDate::getDateYear($request->year);
             $ledger = $ledger->where('date', '>=', $range[1])->where('date', '<=', $range[2]);
             $title = "<span class='mx-2'>Year:" . $year . "</span>";
         } elseif ($type == 5) {
@@ -161,7 +161,7 @@ class EmployeeController1 extends Controller
     {
 
         $date = str_replace('-', '', $request->date);
-        $np = new NepaliDate($date);
+        $np = new AppDate($date);
 
 
         $employee = Employee::where('id', $request->employee_id)->first();
@@ -224,7 +224,7 @@ class EmployeeController1 extends Controller
 
         $employee = Employee::where('id', $request->emp_id)->first();
         $user = $employee->user;
-        $range = NepaliDate::getDateMonth($request->year, $request->month);
+        $range = AppDate::getDateMonth($request->year, $request->month);
         $ledgers = Ledger::where('date', '>=', $range[1])->where('date', '<=', $range[2])->where('user_id', $user->id)->get();
         $empSession = EmployeeSession::where('year', $request->year)->where('month', $request->month)->where('user_id', $user->id)->first();
         // dd($ledgers);
@@ -232,7 +232,7 @@ class EmployeeController1 extends Controller
 
         // $salary = Employee::where('id',$request->emp_id)->select('salary')->first();
         // if($employee->count()>0){
-        //     $range=NepaliDate::getDateMonth($request->year,$request->month);
+        //     $range=AppDate::getDateMonth($request->year,$request->month);
         //     $employee = $employee->where('employee_advances.date','>=',$range[1])->where('employee_advances.date','<=',$range[2])->get();
         //     // dd($employee);
         //     return view('admin.emp.salarypay.data',compact('employee','salary'));
@@ -249,7 +249,7 @@ class EmployeeController1 extends Controller
         // dd($request->all());
         $date = str_replace('-', '', $request->date);
         $employee = Employee::where('id', $request->emp_id)->first();
-        $np = new NepaliDate($date);
+        $np = new AppDate($date);
         if (!($employee->sessionClosed($np->year, $np->month))) {
             return response('previous Month Not Closed', 500);
         } else {
@@ -262,7 +262,7 @@ class EmployeeController1 extends Controller
             $salaryPay->user_id = $employee->user_id;
             $salaryPay->save();
             $ledger = new LedgerManage($employee->user_id);
-            $ledger->addLedger('Salary Paid for('.$request->year.'-'.$request->month.')', 1, $request->pay, $date, '124', $salaryPay->id);
+            $ledger->addLedger('Salary Paid for(' . $request->year . '-' . $request->month . ')', 1, $request->pay, $date, '124', $salaryPay->id);
             echo 'ok';
         }
     }
@@ -319,32 +319,32 @@ class EmployeeController1 extends Controller
         }
 
         if ($employee->sessionClosed($request->year, $request->month)) {
-            $range = NepaliDate::getDateMonth($request->year, $request->month);
+            $range = AppDate::getDateMonth($request->year, $request->month);
             //track month blance wwith respect to salary
             $cr = Ledger::where('date', '>=', $range[1])->where('date', '<=', $range[2])->where('user_id', $employee->user_id)->where('type', 1)->sum('amount');
             $dr = Ledger::where('date', '>=', $range[1])->where('date', '<=', $range[2])->where('user_id', $employee->user_id)->where('type', 2)->sum('amount');
             $track = $dr - $cr;
             $remaning = $track + $employee->salary;
 
-            $l=[];
+            $l = [];
             //input salary into ledger
             $lm = new LedgerManage($employee->user_id);
-            $lastdate = NepaliDate::getDateMonthLast($request->year, $request->month);
-            $l[0]=$lm->addLedger('salary For (' . $request->year . "-" . ($request->month < 10 ? "0" . $request->month : $request->month) . ")", 2, $employee->salary, $lastdate, 129);
+            $lastdate = AppDate::getDateMonthLast($request->year, $request->month);
+            $l[0] = $lm->addLedger('salary For (' . $request->year . "-" . ($request->month < 10 ? "0" . $request->month : $request->month) . ")", 2, $employee->salary, $lastdate, 129);
 
 
             //move remaning balance to another month
             if ($remaning != 0) {
-                $_remaning=$remaning<0?(-1*$remaning):$remaning;
-                $l[1]=$lm->addLedger('Closing Balance', $remaning < 0 ? 2 : 1, $_remaning, $lastdate, 130);
-                $nextMonthRange = NepaliDate::nextMonthStatic($request->year, $request->month);
-                $firstDate = NepaliDate::getDateMonthFirst($nextMonthRange[0], $nextMonthRange[1]);
-                $l[2]=$lm->addLedger('Opening Balance', $remaning < 0 ? 1: 2, $_remaning, $firstDate, 113);
+                $_remaning = $remaning < 0 ? (-1 * $remaning) : $remaning;
+                $l[1] = $lm->addLedger('Closing Balance', $remaning < 0 ? 2 : 1, $_remaning, $lastdate, 130);
+                $nextMonthRange = AppDate::nextMonthStatic($request->year, $request->month);
+                $firstDate = AppDate::getDateMonthFirst($nextMonthRange[0], $nextMonthRange[1]);
+                $l[2] = $lm->addLedger('Opening Balance', $remaning < 0 ? 1 : 2, $_remaning, $firstDate, 113);
             }
-            $sessionClose=new EmployeeSession();
-            $sessionClose->user_id=$employee->user_id;
-            $sessionClose->month=$request->month;
-            $sessionClose->year=$request->year;
+            $sessionClose = new EmployeeSession();
+            $sessionClose->user_id = $employee->user_id;
+            $sessionClose->month = $request->month;
+            $sessionClose->year = $request->year;
             $sessionClose->save();
             return response('Session closed successfully!');
             // return response()->json([$remaning,$sessionClose,$l,$lastdate,$firstDate,$nextMonthRange,$range]);
@@ -374,21 +374,23 @@ class EmployeeController1 extends Controller
         return view('admin.emp.account.single', compact('ledger'));
     }
 
-    public function ret(){
+    public function ret()
+    {
         return view('admin.emp.ret.index');
     }
-    public function addRet(Request $request){
+    public function addRet(Request $request)
+    {
         $date = str_replace('-', '', $request->date);
-        $np = new NepaliDate($date);
+        $np = new AppDate($date);
         $employee = Employee::where('id', $request->employee_id)->first();
         $ledger = new LedgerManage($employee->user_id);
-        $advance=$ledger->addLedger( $request->title , 2, $request->amount, $date, '140', );
+        $advance = $ledger->addLedger($request->title, 2, $request->amount, $date, '140',);
         return view('admin.emp.ret.single', compact('advance'));
     }
     public function getRet(Request $request)
     {
         $date = str_replace('-', '', $request->date);
-        $advances = Ledger::where('date', $date)->where('identifire',140)->get();
+        $advances = Ledger::where('date', $date)->where('identifire', 140)->get();
         // dd($advances);
         return view('admin.emp.ret.list', compact('advances'));
     }
@@ -397,7 +399,7 @@ class EmployeeController1 extends Controller
     {
         $date = str_replace('-', '', $request->date);
 
-        $ledger = Ledger::where('id',$request->id)->delete();
+        $ledger = Ledger::where('id', $request->id)->delete();
 
         return response()->json(['status' => 'success']);
     }
@@ -409,7 +411,5 @@ class EmployeeController1 extends Controller
         $advance->amount = $request->amount;
         $advance->save();
         return response()->json(['status' => 'success']);
-
     }
 }
-

@@ -130,7 +130,7 @@
 
 
     function saveData() {
-        if ($('#nepali-datepicker').val() == '' || $('#id').val() == '' || $('#amount').val()=="" || $('#amount').val()=="0") {
+        if ($('#app-datepicker').val() == '' || $('#id').val() == '' || $('#amount').val()=="" || $('#amount').val()=="0") {
             alert('Please enter data in empty field !');
             $('#id').focus();
             return false;
@@ -196,7 +196,7 @@
         $('#datas').html("");
         // list
         axios.post('{{ route("admin.farmer.due.add.list")}}',{
-            'date': $('#nepali-datepicker').val(),
+            'date': $('#app-datepicker').val(),
             'center':$('#center_id').val()
             })
         .then(function(response) {
@@ -211,10 +211,10 @@
             console.log(response);
         });
     }
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
-    $('#currentdate').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
+    $('#currentdate').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");
@@ -240,7 +240,7 @@
         }
     });
 
-    $('#nepali-datepicker').bind('changed', function() {
+    $('#app-datepicker').bind('changed', function() {
         loaddata();
     });
 

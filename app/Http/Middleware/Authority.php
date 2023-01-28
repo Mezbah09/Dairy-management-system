@@ -17,12 +17,13 @@ class Authority
      */
     public function handle(Request $request, Closure $next)
     {
-        $user=Auth::user();
-        if($user->phone!=env('authphone',"9852059171")){
-            return response('Not authorized To Update or Delete',401);
-        }else{
-            return $next($request);
-        }
+        // $user=Auth::user();
+        // if($user->phone!=env('authphone',"9852059171")){
+        //     return response('Not authorized To Update or Delete',401);
+        // }else{
 
+        // }
+
+        return $next($request);
     }
 }

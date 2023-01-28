@@ -27,13 +27,12 @@
 <div class="row">
     <div class="col-md-2">
         <label for="date">Date</label>
-        <input type="text"  id="currentdate" class="form-control" >
+        <input type="date"  id="currentdate" class="form-control" >
     </div>
     <div class="col-md-10"></div>
     <div class="col-md-2">
         <label for="date">Year</label>
-        <select name="year" id="year" class="form-control show-tick ms select2">
-        </select>
+        <input type="number" minlength="4" maxlength="4" name="year" id="year" class="form-control" />
     </div>
     <div class="col-md-2">
         <label for="date">Month</label>
@@ -132,7 +131,7 @@
         $('#allData').html('');
         Toogle();
     }
-    var month = Array.from(NepaliFunctions.GetBsMonths());
+    var month = Array.from(AppDateFunction.GetBsMonths());
     var i =1;
     month.forEach(element => {
         $('#month').append('<option value="'+i+'">'+element+'</option>');
@@ -140,7 +139,7 @@
     });
 
     var start_y = 2070;
-    var now_yr = NepaliFunctions.GetCurrentBsYear();
+    var now_yr = AppDateFunction.GetCurrentBsYear();
     var now_yr1 = now_yr;
     for (let index = start_y; index < now_yr; index++) {
         $('#year').append('<option value="'+now_yr1+'">'+now_yr1+'</option>');
@@ -217,9 +216,9 @@
 
     window.onload = function() {
 
-        var month = NepaliFunctions.GetCurrentBsDate().month;
-        var year = NepaliFunctions.GetCurrentBsDate().year;
-        var day =  NepaliFunctions.GetCurrentBsDate().day;
+        var month = AppDateFunction.GetCurrentBsDate().month;
+        var year = AppDateFunction.GetCurrentBsDate().year;
+        var day =  AppDateFunction.GetCurrentBsDate().day;
 
         $('#year').val(year).change();
         $('#month').val(month).change();
@@ -229,13 +228,13 @@
             $('#session').val(1).change();
         }
 
-        var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-        var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
+        var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+        var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
 
-        $('#currentdate').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+        // $('#currentdate').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
-        var mainInput = document.getElementById("currentdate");
-        mainInput.nepaliDatePicker();
+        // var mainInput = document.getElementById("currentdate");
+        // mainInput.nepaliDatePicker();
     };
 
 

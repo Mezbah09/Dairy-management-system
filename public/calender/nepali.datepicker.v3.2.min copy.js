@@ -25,7 +25,7 @@ var AppDateFunction = (function () {
             return (r -= t.day + 1), (r += n.day - 1);
         }
         function a(e, t) {
-            var n = new Date();
+            var n = new Date(r(e, "MM/DD/YYYY"));
             return (
                 n.setDate(n.getDate() + t),
                 {
@@ -36,8 +36,11 @@ var AppDateFunction = (function () {
             );
         }
         function i(e, t) {
-            var date = new Date()
-            return { year: date.getFullYear(), month: date.getMonth(), day: date.getDay() };
+            for (e.day += t; e.day > s[e.year][e.month - 1]; )
+                (e.day -= s[e.year][e.month - 1]),
+                    (e.month += 1),
+                    e.month > 12 && ((e.month = 1), (e.year += 1));
+            return { year: e.year, month: e.month, day: e.day };
         }
         function o(e) {
             var t = n(l, e);

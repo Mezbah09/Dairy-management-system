@@ -115,8 +115,8 @@
 <script>
     // initTableSearch('searchid', 'farmerforData', ['name']);
     // load by date
-    $("input#nepali-datepicker").bind('click', function (e) {
-        var date = $('#nepali-datepicker').val();
+    $("input#app-datepicker").bind('click', function (e) {
+        var date = $('#app-datepicker').val();
         var center_id = $('#center_id').val();
         axios({
                 method: 'post',
@@ -225,7 +225,7 @@
 
     // load advance
    $('#center_id').change(function(){
-        var datadate = $('#nepali-datepicker').val();
+        var datadate = $('#app-datepicker').val();
         var center_id = $('#center_id').val();
         // alert(center_id);
         // console.log(datadate);
@@ -252,9 +252,9 @@
         // loadAdvance();
     };
 
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     function farmerId(id){
         $('#u_id').val(id);

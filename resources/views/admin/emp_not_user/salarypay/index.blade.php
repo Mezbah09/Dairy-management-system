@@ -74,7 +74,7 @@
     // initTableSearch('searchid', 'farmerforData', ['name']);
     // load by date
 
-    var month = Array.from(NepaliFunctions.GetBsMonths());
+    var month = Array.from(AppDateFunction.GetBsMonths());
     var i =1;
     month.forEach(element => {
         $('#month').append('<option value="'+i+'">'+element+'</option>');
@@ -82,7 +82,7 @@
     });
 
     var start_y = 2070;
-    var now_yr = NepaliFunctions.GetCurrentBsYear();
+    var now_yr = AppDateFunction.GetCurrentBsYear();
     var now_yr1 = now_yr;
     for (let index = start_y; index < now_yr; index++) {
         $('#year').append('<option value="'+now_yr1+'">'+now_yr1+'</option>');
@@ -109,9 +109,9 @@
                     $('#employeeData').html(response.data);
                     var mainInput = document.getElementById("nepali-datepicker");
                     mainInput.nepaliDatePicker();
-                    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-                    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-                    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+                    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+                    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+                    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
                     $('#p_amt').val($('#salary').val() - $('#tot-adv').val());
                     paidList();
                 })
@@ -124,7 +124,7 @@
 
 
     function salaryPayment(){
-            var date = $('#nepali-datepicker').val();
+            var date = $('#app-datepicker').val();
             var emp_id = $('#employee_id').val();
             var year = $('#year').val();
             var month = $('#month').val();
@@ -160,7 +160,7 @@
 
 // amount transfer
 function transferAmt(){
-            var date = $('#nepali-datepicker').val();
+            var date = $('#app-datepicker').val();
             var emp_id = $('#employee_id').val();
             var year = $('#year').val();
             var month = $('#month').val();
@@ -216,8 +216,8 @@ function transferAmt(){
     }
 
     window.onload = function() {
-        var month = NepaliFunctions.GetCurrentBsDate().month;
-        var year = NepaliFunctions.GetCurrentBsDate().year;
+        var month = AppDateFunction.GetCurrentBsDate().month;
+        var year = AppDateFunction.GetCurrentBsDate().year;
         $('#year').val(year).change();
         $('#month').val(month).change();
         paidList();

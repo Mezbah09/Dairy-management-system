@@ -20,11 +20,14 @@ class RoleManager
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        $user=Auth::user();
-        if($user->getRole()==$role){
+
+        return $next($request);
+
+        $user = Auth::user();
+        if ($user->getRole() == $role) {
             return $next($request);
-        }else{
-            return redirect()->route($user->getRole().".dashboard");
+        } else {
+            return redirect()->route($user->getRole() . ".dashboard");
         }
     }
 }

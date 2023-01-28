@@ -66,7 +66,7 @@ Make a Request
                             <div class="col-lg-6">
                                 <label for="name">Date</label>
                                 <div class="form-group">
-                                    <input type="text" name="date" id="nepali-datepicker" class="form-control" data-next="title" placeholder="Date" required>
+                                    <input type="date" name="date" id="app-datepicker" class="form-control" data-next="title" placeholder="Date" required>
                                 </div>
                             </div>
 

@@ -29,7 +29,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input readonly type="text" name="date" id="nepali-datepicker" class="form-control next" data-next="supplier_id" placeholder="Date" onchange="">
+                        <input type="date" name="date" id="app-datepicker" class="form-control next" data-next="supplier_id" placeholder="Date" onchange="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -112,7 +112,7 @@
 
 
     function saveData() {
-        if ($('#nepali-datepicker').val() == '' || $('#supplier_id').val() == ""  || $('#amount').val()=="" || $('#amount').val()=="0") {
+        if ($('#app-datepicker').val() == '' || $('#supplier_id').val() == ""  || $('#amount').val()=="" || $('#amount').val()=="0") {
             alert('Please enter data in empty field !');
             $('#supplier_id').focus();
             return false;
@@ -165,10 +165,10 @@
 
 
 
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
-    $('#currentdate').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
+    $('#currentdate').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");
@@ -183,7 +183,7 @@
         $('#datas').html("");
         // list
         axios.post('{{ route("supplier.previous.balance.load")}}',{
-            'date': $('#nepali-datepicker').val()
+            'date': $('#app-datepicker').val()
             })
         .then(function(response) {
             // console.log(response.data);
@@ -198,7 +198,7 @@
 
 
 
-    $('#nepali-datepicker').bind('changed', function() {
+    $('#app-datepicker').bind('changed', function() {
         loadData();
     });
 

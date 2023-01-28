@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="text" name="date" id="nepali-datepicker" class="form-control" placeholder="Date" required>
+                                    <input type="date" name="date" id="app-datepicker" class="form-control" placeholder="Date" required>
                                 </div>
                             </div>
 

@@ -12,13 +12,13 @@
             </span>
         </div>
 
-        <div class="col-md-2 section href" data-target="{{route('admin.farmer.advance')}}">
+        {{-- <div class="col-md-2 section href" data-target="{{route('admin.farmer.advance')}}">
             <span class="currency">৳</span>
             <span class="divider"></span>
             <span class="text text-center">
                 Farmer <br> Advance
             </span>
-        </div>
+        </div> --}}
 
         <div class="col-md-2 section href" data-target="{{route('admin.collection')}}">
             <span class="icon">
@@ -40,7 +40,7 @@
             </span>
         </div>
 
-        {{-- <div class="col-md-2 section href" data-target="{{route('admin.snf.fat')}}">
+        <div class="col-md-2 section href" data-target="{{route('admin.snf.fat')}}">
             <span class="icon">
                 <i class="zmdi zmdi-dns"></i>
             </span>
@@ -81,7 +81,7 @@
             </span>
         </div>
 
-        <div class="col-md-2 section href" data-target="{{route('admin.exp')}}">
+        {{-- <div class="col-md-2 section href" data-target="{{route('admin.exp')}}">
             <span class="icon">
                 <i class="zmdi zmdi-accounts"></i>
             </span>
@@ -89,9 +89,9 @@
             <span class="text text-center">
                 Suppliers ({{ \App\Models\User::where('role',3)->count() }})
             </span>
-        </div>
+        </div> --}}
 
-        <div class="col-md-2 section href" data-target="{{route('admin.exp')}}">
+        {{-- <div class="col-md-2 section href" data-target="{{route('admin.exp')}}">
             <span class="icon">
                 <i class="zmdi zmdi-book"></i>
             </span>
@@ -99,9 +99,9 @@
             <span class="text text-center">
                 Supplier <br> Bills
             </span>
-        </div>
+        </div> --}}
         @endif
-        <div class="col-md-2 section href" data-target="{{route('report.home')}}">
+        {{-- <div class="col-md-2 section href" data-target="{{route('report.home')}}">
             <span class="icon">
                 <i class="zmdi zmdi-markunread-mailbox"></i>
             </span>
@@ -109,9 +109,9 @@
             <span class="text text-center">
                 Reports
             </span>
-        </div>
+        </div> --}}
 
-        <div class="col-md-2 section href" data-target="{{route('cash.flow.index')}}">
+        {{-- <div class="col-md-2 section href" data-target="{{route('cash.flow.index')}}">
             <span class="icon">
                 <i class="zmdi zmdi-money"></i>
             </span>
@@ -119,6 +119,6 @@
             <span class="text text-center">
                 Cash <br> Flow
             </span>
-        </div> --}}
+        </div>  --}}
     </div>
 @endsection

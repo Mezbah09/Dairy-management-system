@@ -45,7 +45,7 @@
 <script src="{{ asset('backend/plugins/select2/select2.min.js') }}"></script>
 <script src="{{ asset('calender/nepali.datepicker.v3.2.min.js') }}"></script>
 <script>
-    var month = Array.from(NepaliFunctions.GetBsMonths());
+    var month = Array.from(AppDateFunction.GetBsMonths());
     var i =1;
     month.forEach(element => {
         $('#month').append('<option value="'+i+'">'+element+'</option>');
@@ -53,7 +53,7 @@
     });
 
     var start_y = 2070;
-    var now_yr = NepaliFunctions.GetCurrentBsYear();
+    var now_yr = AppDateFunction.GetCurrentBsYear();
     var now_yr1 = now_yr;
     for (let index = start_y; index < now_yr; index++) {
         $('#year').append('<option value="'+now_yr1+'">'+now_yr1+'</option>');
@@ -93,9 +93,9 @@
 
     window.onload = function() {
 
-        var month = NepaliFunctions.GetCurrentBsDate().month;
-        var year = NepaliFunctions.GetCurrentBsDate().year;
-        var day =  NepaliFunctions.GetCurrentBsDate().day;
+        var month = AppDateFunction.GetCurrentBsDate().month;
+        var year = AppDateFunction.GetCurrentBsDate().year;
+        var day =  AppDateFunction.GetCurrentBsDate().day;
 
         $('#year').val(year).change();
         $('#month').val(month).change();

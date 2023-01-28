@@ -57,7 +57,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input readonly type="text" name="date" id="nepali-datepicker" class="form-control next" data-next="user_id" placeholder="Date">
+                        <input type="date" name="date" id="app-datepicker" class="form-control next" data-next="user_id" placeholder="Date">
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@
     function saveData() {
         if(!sellock){
 
-        if ($('#nepali-datepicker').val() == '' || $('#id').val() == ''||$('#product_id').val() == '' || $('#total').val() == 0) {
+        if ($('#app-datepicker').val() == '' || $('#id').val() == ''||$('#product_id').val() == '' || $('#total').val() == 0) {
             alert('Please enter data in empty field !');
             $('#id').focus();
             return false;
@@ -272,7 +272,7 @@
         $('#sellDisDataBody').html("");
 
         // list
-        axios.post('{{ route("admin.dis.sell.list")}}',{'date': $('#nepali-datepicker').val()})
+        axios.post('{{ route("admin.dis.sell.list")}}',{'date': $('#app-datepicker').val()})
         .then(function(response) {
             // console.log(response.data);
             $('#sellDisDataBody').html(response.data);
@@ -282,10 +282,10 @@
             console.log(response);
         });
     }
-    var month = ('0'+ NepaliFunctions.GetCurrentBsDate().month).slice(-2);
-    var day = ('0' + NepaliFunctions.GetCurrentBsDate().day).slice(-2);
-    $('#nepali-datepicker').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
-    $('#currentdate').val(NepaliFunctions.GetCurrentBsYear() + '-' + month + '-' + day);
+    var month = ('0'+ AppDateFunction.GetCurrentBsDate().month).slice(-2);
+    var day = ('0' + AppDateFunction.GetCurrentBsDate().day).slice(-2);
+    $('#app-datepicker').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
+    $('#currentdate').val(AppDateFunction.GetCurrentBsYear() + '-' + month + '-' + day);
 
     window.onload = function() {
         var mainInput = document.getElementById("nepali-datepicker");
@@ -327,7 +327,7 @@
         }
     });
 
-    $('#nepali-datepicker').bind('changed', function() {
+    $('#app-datepicker').bind('changed', function() {
         loaddata();
     });
 
